@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-var proxy = require('http-proxy-middleware');
+var cors = require('./models/cors');
+
 
 
 
@@ -17,6 +18,7 @@ mongoose.connect(process.env.DATABASE)
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 
 //Models
 
@@ -28,6 +30,8 @@ const {Product} = require('./models/product');
 //middleware
 const {auth} = require('./middleware/auth');
 const {admin} = require('./middleware/admin')
+
+  
 //=============================
 //          PRODUCTS
 //=============================
